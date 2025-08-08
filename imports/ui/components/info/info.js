@@ -20,13 +20,13 @@ Template.info.events({
     const title = target.title;
     const url = target.url;
 
-    Meteor.call('links.insert', title.value, url.value, (error) => {
-      if (error) {
-        alert(error.error);
-      } else {
+    Meteor.callAsync('links.insert', title.value, url.value)
+      .then(() => {
         title.value = '';
         url.value = '';
-      }
-    });
+      })
+      .catch((error) => {
+        alert(error.error || error.message);
+      });
   },
 });

@@ -8,9 +8,9 @@ import { PublicationCollector } from 'meteor/johanbrook:publication-collector';
 import './publications.js';
 
 describe('links publications', function () {
-  beforeEach(function () {
-    Links.remove({});
-    Links.insert({
+  beforeEach(async function () {
+    await Links.removeAsync({});
+    await Links.insertAsync({
       title: 'meteor homepage',
       url: 'https://www.meteor.com',
     });
